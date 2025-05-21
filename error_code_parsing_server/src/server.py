@@ -7,7 +7,7 @@ from mcp.server.fastmcp import FastMCP
 import json
 from datetime import datetime
 import sys
-from tools import parse_forklift_error, forklift_accessory_recommendation
+from tools import parse_forklift_error
 # Configure logging with more detailed format
 logging.basicConfig(
     level=logging.DEBUG,  # 改为 DEBUG 级别以显示更多信息
@@ -37,15 +37,6 @@ def error_code_parsing(error_code: str):
     if not error_code:
         raise ValueError("error_code参数不能为空吗，需要提供错误码")
     return parse_forklift_error(error_code)
-       
-@mcp.tool() 
-def accessory_recommendation(description: str):
-    """
-    根据描述进行配件的推荐
-    Args:
-        description:用户的描述
-    """
-    return forklift_accessory_recommendation(description)
 
 def main():
     """Main entry point for the MCP server."""

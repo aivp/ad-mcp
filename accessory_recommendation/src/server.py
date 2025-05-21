@@ -23,7 +23,7 @@ logger = logging.getLogger(__name__)
 viking_knowledgebase_service = None
 
 # Create MCP server
-port = int(os.getenv("PORT", "8001"))
+port = int(os.getenv("PORT", "8000"))
 logger.info(f"Initializing MCP server on port {port}")
 mcp = FastMCP("Server", port=port)
        
