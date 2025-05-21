@@ -1,0 +1,43 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.pyc
+
+# 虚拟环境
+.venv/
+venv/
+ENV/
+
+# 日志文件
+*.log
+mcp_server.log
+
+# 环境变量
+.env
+
+# IDE配置
+.vscode/
+.idea/
+*.sublime-workspace
+*.sublime-project
+
+# 单元测试
+htmlcov/
+.coverage
+.tox/
+
+# Cursor相关
+.cursor/*.db
+.cursor/*.log
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# 其他
+.DS_Store
+Thumbs.db
+
+# 项目特有
+/cursor/ 
