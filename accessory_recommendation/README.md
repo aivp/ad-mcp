@@ -1,19 +1,19 @@
-# ADmcp 故障码解析服务
+# ADmcp 配件推荐服务
 
 ## 项目简介
 
-ADmcp 故障码解析服务是 ADmcp 项目的一个子模块，基于 MCP（Model Context Protocol）协议实现，专注于为叉车用户提供故障码解析服务。该服务通过分析故障码，为用户提供准确的故障描述和解决方案建议。
+ADmcp 配件推荐服务是 ADmcp 项目的一个子模块，基于 MCP（Model Context Protocol）协议实现，专注于为叉车用户提供智能配件推荐服务。该服务通过分析用户需求和使用场景，为用户推荐最适合的叉车配件。
 
 ## 主要功能
 
-- **故障码解析**  
-  输入叉车故障码，快速返回对应的故障描述和建议解决方案。
+- **智能配件推荐**  
+  根据用户描述，智能推荐适合的叉车配件及其简要说明和参考价格。
 
-- **故障诊断建议**  
-  根据故障类型，提供详细的诊断步骤和维修建议。
+- **配件分类管理**  
+  支持多种配件类型的分类和筛选，包括液压系统、电气系统、制动系统等。
 
-- **故障码管理**  
-  支持多种品牌和型号叉车的故障码数据库管理。
+- **用户偏好分析**  
+  学习用户的使用习惯和偏好，提供更精准的推荐。
 
 ## 目录结构
 
@@ -21,7 +21,7 @@ ADmcp 故障码解析服务是 ADmcp 项目的一个子模块，基于 MCP（Mod
 .
 ├── src/
 │   ├── server.py           # 服务主程序，MCP 工具注册与服务入口
-│   └── tools.py            # 故障码解析核心逻辑
+│   └── tools.py            # 配件推荐核心逻辑
 ├── requirements.txt        # Python 依赖包列表
 ├── Dockerfile             # Docker 构建文件
 ├── docker-compose.yml     # Docker Compose 配置
@@ -46,7 +46,7 @@ pip install -r requirements.txt
 python src/server.py --transport sse
 ```
 
-服务默认监听本地 8000 端口，支持 SSE 协议。
+服务默认监听本地 8001 端口，支持 SSE 协议。
 
 ### 3. 配置 MCP 工具（以 Cursor 为例）
 
@@ -69,17 +69,17 @@ python src/server.py --transport sse
       "url": "http://IP:Port/sse",
       "tools": [
         {
-          "name": "error_code_parsing",
-          "description": "解析叉车故障码，返回描述和解决方案",
+          "name": "accessory_recommendation",
+          "description": "根据描述推荐叉车配件",
           "parameters": {
             "type": "object",
             "properties": {
-              "error_code": {
+              "description": {
                 "type": "string",
-                "description": "故障码"
+                "description": "配件需求描述"
               }
             },
-            "required": ["error_code"]
+            "required": ["description"]
           }
         }
       ]
@@ -92,19 +92,30 @@ python src/server.py --transport sse
 
 ```json
 {
-  "error_code": "E005"
+  "description": "叉车需要更换制动片"
 }
 ```
 
 返回示例：
 ```json
 {
-  "error_code": "E005",
-  "description": "制动系统异常",
-  "solution": "检查制动油位和制动片磨损情况，必要时更换制动片",
-  "severity": "高",
-  "affected_systems": ["制动系统", "液压系统"],
-  "maintenance_priority": "立即处理"
+  "query": "叉车需要更换制动片",
+  "recommendations": [
+    {
+      "name": "制动片套装",
+      "description": "适用于叉车制动系统，包含制动片和安装配件",
+      "price": "¥800-1200",
+      "compatibility": ["CPD15", "CPD20", "CPD25"],
+      "estimated_lifetime": "6-12个月"
+    },
+    {
+      "name": "制动片（单件）",
+      "description": "单个制动片，适用于紧急更换",
+      "price": "¥200-300",
+      "compatibility": ["CPD15", "CPD20", "CPD25"],
+      "estimated_lifetime": "3-6个月"
+    }
+  ]
 }
 ```
 
@@ -127,16 +138,16 @@ docker-compose down
 
 ```bash
 # 构建镜像
-docker build -t admcp-error-parser .
+docker build -t admcp-accessory .
 
 # 运行容器
-docker run -d -p 8000:8000 --name admcp-error-parser admcp-error-parser
+docker run -d -p 8001:8001 --name admcp-accessory admcp-accessory
 
 # 查看容器日志
-docker logs -f admcp-error-parser
+docker logs -f admcp-accessory
 
 # 停止容器
-docker stop admcp-error-parser
+docker stop admcp-accessory
 ```
 
 ## 开发说明
