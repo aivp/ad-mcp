@@ -1,0 +1,12 @@
+version: '3.8'
+
+services:
+  admcp:
+    build: .
+    ports:
+      - "8000:8000"
+    environment:
+      - PORT=8000
+    volumes:
+      - ./src:/app/src  # 开发模式下可以挂载源代码目录
+    restart: unless-stopped 

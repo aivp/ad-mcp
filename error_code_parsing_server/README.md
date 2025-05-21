@@ -136,3 +136,34 @@ python src/server.py --transport sse
     ]
   }
   ```
+
+## Docker 部署
+
+### 1. 使用 Docker Compose 启动服务
+
+```bash
+# 构建并启动服务
+docker-compose up -d
+
+# 查看服务日志
+docker-compose logs -f
+
+# 停止服务
+docker-compose down
+```
+
+### 2. 直接使用 Docker 命令
+
+```bash
+# 构建镜像
+docker build -t admcp .
+
+# 运行容器
+docker run -d -p 8000:8000 --name admcp admcp
+
+# 查看容器日志
+docker logs -f admcp
+
+# 停止容器
+docker stop admcp
+```

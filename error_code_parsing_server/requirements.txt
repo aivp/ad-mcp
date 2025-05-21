@@ -1,0 +1,14 @@
+# MCP 协议相关
+fastmcp  # MCP 协议实现
+typing-extensions  # 类型提示支持
+
+# Web 服务相关
+fastapi # Web 框架
+uvicorn # ASGI 服务器
+sse-starlette  # SSE 支持
+python-multipart  # 表单数据处理
+
+# 工具和工具包
+python-dotenv  # 环境变量管理
+pydantic # 数据验证
+requests # HTTP 客户端（用于测试）
