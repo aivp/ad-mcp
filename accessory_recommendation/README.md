@@ -46,7 +46,7 @@ pip install -r requirements.txt
 python src/server.py --transport sse
 ```
 
-服务默认监听本地 8001 端口，支持 SSE 协议。
+服务默认监听本地 8000 端口，支持 SSE 协议。
 
 ### 3. 配置 MCP 工具（以 Cursor 为例）
 
