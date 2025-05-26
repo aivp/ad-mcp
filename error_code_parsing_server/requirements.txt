@@ -7,6 +7,7 @@ fastapi # Web 框架
 uvicorn # ASGI 服务器
 sse-starlette  # SSE 支持
 python-multipart  # 表单数据处理
+requests # HTTP 客户端（用于测试）
 
 # 工具和工具包
 python-dotenv  # 环境变量管理
