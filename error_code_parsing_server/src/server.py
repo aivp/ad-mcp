@@ -35,7 +35,7 @@ def error_code_parsing(error_code: str):
         error_code:错误码
     """
     if not error_code:
-        raise ValueError("error_code参数不能为空吗，需要提供错误码")
+        raise ValueError("error_code参数不能为空，需要提供错误码")
     return parse_forklift_error(error_code)
 
 def main():
